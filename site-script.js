@@ -5,7 +5,7 @@ var g = 0.1;
 var radius = 20;
 var color = "#0000ff";
 var balls;
-var numBalls = 200;
+var numBalls = 5;
 canvas.width = 800;
 canvas.height = 500;
 
@@ -42,6 +42,8 @@ function init() {
         ball.draw(ctx);
         balls.push(ball);
 
+        console.log(balls);
+
     }
 
     setInterval(onEachStep, 1000/60); // 60 fps
@@ -67,4 +69,6 @@ function onEachStep() {
         ball.draw(ctx);
     }
 };
+
+
  
