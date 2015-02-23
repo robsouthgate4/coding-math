@@ -11,6 +11,7 @@ if (!window.requestAnimationFrame) {
     });
 }
 
+// Capture mouse
 utils.captureMouse = function(element) {
 
     var mouse = { x: 0, y: 0 };
@@ -42,6 +43,7 @@ utils.captureMouse = function(element) {
 
 };
 
+// Capture Touch
 utils.captureTouch =  function(element) {
 
     var touch = {x: null, y: null, isPressed: false};
@@ -78,3 +80,4 @@ utils.captureTouch =  function(element) {
     return touch;
 
 };
+
