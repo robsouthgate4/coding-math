@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css"/>
     <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
     <script src="utils.js"></script>
-    <script src="arrow.js"></script>
+    <script src="ball.js"></script>
 </head>
 <body>
 <canvas id="canvas" width="400" height="400"></canvas>
@@ -16,34 +16,25 @@
 
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
-        var mouse = utils.captureMouse(canvas);
-        var arrow = new Arrow();
+        var ball = new Ball(20, "#000");
+        var angle = 0;
+        var centerScale = 1;
+        var range = 1;
+        var speed = 0.05;
 
-        arrow.x = canvas.width / 2;
-        arrow.y = canvas.height / 2;
-        arrow.color = "#000";
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
 
-        for ( var angle = 0; angle < Math.PI * 2; angle += 0.1  ) {
-            console.log(Math.sin(angle));
-        }
-
-
-        (function drawFrame() {
-
+        (function drawFrame () {
             window.requestAnimationFrame(drawFrame);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            var dx = mouse.x - arrow.x;
-            var dy =  mouse.y - arrow.y;
-
-            arrow.rotation = Math.atan2(dy, dx);
-            arrow.draw(ctx);
-
-        })();
+            ball.scaleX = ball.scaleY = centerScale + Math.sin(angle) * range;
+            angle += speed;
+            ball.draw(ctx);
+        }());
 
 
     };
 </script>
 </body>
 </html>
-
