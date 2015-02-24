@@ -14,23 +14,23 @@
 <script>
     window.onload = function() {
 
-        var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext("2d");
-        var ball = new Ball(20, "#000");
-        var angle = 0;
-        var centerScale = 1;
-        var range = 1;
-        var speed = 0.05;
-
-        ball.x = canvas.width / 2;
-        ball.y = canvas.height / 2;
+        var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        ball = new Ball(10, "#000"),
+        angle = 0,
+        centerX = canvas.width / 2,
+        centerY = canvas.height / 2,
+        radiusx = 50,
+        radiusy = 150,
+        speed = 0.08;
 
         (function drawFrame () {
-            window.requestAnimationFrame(drawFrame);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ball.scaleX = ball.scaleY = centerScale + Math.sin(angle) * range;
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            ball.x = centerX + Math.cos(angle) * radiusx;
+            ball.y = centerY + Math.sin(angle) * radiusy;
             angle += speed;
-            ball.draw(ctx);
+            ball.draw(context);
         }());
 
     };
