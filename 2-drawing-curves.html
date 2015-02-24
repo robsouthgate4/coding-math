@@ -14,37 +14,23 @@
 <textarea id="log"></textarea>
 <script>
     window.onload = function () {
-
         var canvas = document.getElementById('canvas'),
                 context = canvas.getContext('2d'),
                 mouse = utils.captureMouse(canvas),
-                log = document.getElementById('log'),
-                rect = {x: canvas.width / 2, y: canvas.height / 2};
-
-        (function drawFrame () {
-
-            window.requestAnimationFrame(drawFrame, canvas);
-
+                x0 = 100,
+                y0 = 200,
+                x2 = 300,
+                y2 = 200;
+        canvas.addEventListener('mousemove', function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
-            var dx = rect.x - mouse.x,
-                    dy = rect.y - mouse.y,
-                    dist = Math.sqrt(dx * dx + dy * dy);
-
-            //draw square
-            context.fillStyle = "#000000";
-            context.fillRect(rect.x - 2, rect.y - 2, 4, 4);
-
-            //draw line
+            var x1 = mouse.x * 2 - (x0 + x2) /2,
+                    y1 = mouse.y * 2 - (y0 + y2) / 2;
+//curve toward mouse
             context.beginPath();
-            context.moveTo(rect.x, rect.y);
-            context.lineTo(mouse.x, mouse.y);
-            context.closePath();
+            context.moveTo(x0, y0);
+            context.quadraticCurveTo(x1, y1, x2, y2);
             context.stroke();
-
-            //log output of distance value to screen
-            log.value = "distance: " + dist;
-
-        }());
+        }, false);
     };
 </script>
 </body>
